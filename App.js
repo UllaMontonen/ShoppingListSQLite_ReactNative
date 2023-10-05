@@ -1,10 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, FlatList, Keyboard } from 'react-native';
 import * as SQLite from 'expo-sqlite';
 
-// creating a database
-const db = SQLite.openDatabase('coursedb.db');
 
 export default function App() {
   // product input
@@ -14,6 +12,8 @@ export default function App() {
   // data is saved here
   const [data, setData] = useState([]);
 
+  // creating a database
+  const db = SQLite.openDatabase('shoppinglist.db');
 
   // creating a table
   useEffect(() => {
@@ -31,6 +31,7 @@ export default function App() {
       }, null, updateList)
       setProduct('');
       setAmount('');
+      Keyboard.dismiss();
   }
 
   // updating shopping list everytime changes are made to the shopping list
@@ -39,6 +40,7 @@ export default function App() {
       tx.executeSql('select * from data;', [], (_, { rows }) =>
         setData(rows._array)
       );
+      
     }, null, null);
   }
 
