@@ -64,16 +64,16 @@ export default function App() {
       <Header
         centerComponent={{ text: 'SHOPPING LIST', style: { color: '#fff', fontSize: 18, fontWeight: 'bold', marginBottom: 10} }}
       />
+      <View style={styles.space}></View>
       <Input
-        placeholder='Product'
-        label='Write product here'
+        label='Product'
+        placeholder='Write product here'
         style={styles.input}
         onChangeText={product => setProduct(product)}
         value={product} />
       <Input
-        placeholder='Amount'
-        label='Write amount here'
-        style={styles.input}
+        label='Amount'
+        placeholder='Write amount here'
         onChangeText={amount => setAmount(amount)}
         value={amount} />
         <Button raised icon={{name: 'save', color: "white"}} onPress={saveItem} title="SAVE" />
@@ -85,10 +85,10 @@ export default function App() {
           <ListItem.Content>
           <View style={styles.flex}>
             <ListItem.Title>{item.product}</ListItem.Title>
-            <Icon style={styles.icon} name="trash-can-outline" type="material-community" color="red" onPress={() => deleteItem(item.id)}/>
             </View>
             <ListItem.Subtitle>{item.amount}</ListItem.Subtitle>
           </ListItem.Content>
+          <Icon style={styles.icon} name="trash-can-outline" type="material-community" color="red" onPress={() => deleteItem(item.id)}/>
           </ListItem>}
       />
       <StatusBar style="auto" />
@@ -104,5 +104,8 @@ const styles = StyleSheet.create({
   flex:{
     flexDirection: 'row',
     alignItem: "right",
+  },
+  space: {
+    marginTop: 20
   }
 });
